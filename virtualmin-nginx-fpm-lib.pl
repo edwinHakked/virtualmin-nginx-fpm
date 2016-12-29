@@ -75,7 +75,7 @@ print FILE <<"NGINX";
     }
     location ~ \\.php\$ {
         try_files \$uri =404;
-        fastcgi_pass unix:/var/run/php5-fpm-$d->{'dom'}.sock;
+        fastcgi_pass unix:/var/run/php/$d->{'dom'}.sock;
     }
 }
 NGINX
@@ -99,7 +99,7 @@ print FILE <<"FPM";
 [$d->{'dom'}]
 user = $d->{'user'}
 group = $d->{'group'}
-listen = /var/run/php5-fpm-$d->{'dom'}.sock
+listen = /var/run/php/$d->{'dom'}.sock
 listen.owner = $config{'nginx_user'}
 listen.group = $config{'nginx_user'}
 pm = $conf->{'pm'}
